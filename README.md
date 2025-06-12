@@ -1,1 +1,2 @@
 # dify
+上传文件只可处理markdown文件，将PDF文件转换为markdown文件方法在项目书里有介绍方法
