@@ -1,0 +1,700 @@
+app:
+  description: 将pdf装换过来的markdown文本进行数据清洗，服务于知识库的导入
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: markdown文本处理
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.26@4f1c4ded3d189719b7dd54e9d4e5b26f724f3632f3dfaa299491b42accc112c8
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: d9bcad31-0948-4366-a328-bd4d0753f7d3
+    name: file_catalog
+    selector:
+    - conversation
+    - file_catalog
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1749723212134-source-1749723294612-target
+      source: '1749723212134'
+      sourceHandle: source
+      target: '1749723294612'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: code
+      id: 1749723294612-source-1749723322283-target
+      source: '1749723294612'
+      sourceHandle: source
+      target: '1749723322283'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1749723322283-source-1749723349900-target
+      source: '1749723322283'
+      sourceHandle: source
+      target: '1749723349900'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1749723349900-source-1749723523668-target
+      source: '1749723349900'
+      sourceHandle: source
+      target: '1749723523668'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 1749723523668-source-1749724890036-target
+      source: '1749723523668'
+      sourceHandle: source
+      target: '1749724890036'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1749724890036-source-1749724964588-target
+      source: '1749724890036'
+      sourceHandle: source
+      target: '1749724964588'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 1749723523668-source-1749725282173-target
+      source: '1749723523668'
+      sourceHandle: source
+      target: '1749725282173'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1749725282173-source-1749725508748-target
+      source: '1749725282173'
+      sourceHandle: source
+      target: '1749725508748'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1749725508748-source-1749726265381-target
+      source: '1749725508748'
+      sourceHandle: source
+      target: '1749726265381'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1749726265381--1749726305509-target
+      source: '1749726265381'
+      sourceHandle: source
+      target: '1749726305509'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1749725508748'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1749725508748start-source-1749728198670-target
+      source: 1749725508748start
+      sourceHandle: source
+      target: '1749728198670'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1749725508748'
+        sourceType: llm
+        targetType: code
+      id: 1749728198670-source-1749725979381-target
+      source: '1749728198670'
+      sourceHandle: source
+      target: '1749725979381'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: file_name
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file_name
+      height: 89
+      id: '1749723212134'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1749723212134'
+        - file_name
+      height: 91
+      id: '1749723294612'
+      position:
+        x: 383
+        y: 282
+      positionAbsolute:
+        x: 383
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    return {\n        \"result\": arg1[:20000],\n\
+          \    }\n\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 截取文档
+        type: code
+        variables:
+        - value_selector:
+          - '1749723294612'
+          - text
+          variable: arg1
+      height: 53
+      id: '1749723322283'
+      position:
+        x: 686
+        y: 282
+      positionAbsolute:
+        x: 686
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1749723322283'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qvq-max-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 289e4518-fadd-48de-a0ab-fb91d5f82fc3
+          role: system
+          text: "你是一名专业的文档分析师，擅长从技术文档/论文中提取结构化大纲。\n\n你的任务是：\n- 识别标题层级(H1-H6)\n- 统计章节分布与内容概要\n\
+            - 输出带缩进层级的摘要树\n\n任务执行步骤：\n1. 通读文档，标记所有标题（格式如#、##等）；\n2. 按缩进层级构建大纲树（H为一级，H2为二级，以此类推）\n\
+            3. 为每个章节生成1-2句内容摘要；\n4. 输出Markdown格式的层级列表，包含标题和摘要。\n例如\n输出格式：\nmarkdown\n\
+            - [标题层级] 标题文本\n   摘要： 本节核心内容（100字以内）\n\n示例输入：\n# 引言\n## 研究背景\n### 行业现状\n\
+            ## 研究方法\n\n示例输出：\n- [H1]引言\n   摘要：阐述研究背景与方法论\n   -[H2] 研究背景\n     摘要：分析行业现状与问题\n\
+            \     -[H3]行业现状\n      摘要：描述当前市场数据\n   -[H2] 研究方法\n     摘要：说明实验设计与技术路线\n\
+            \n注：基于原文来设计，不允许补充内容，不允许扩写内容"
+        - id: 5b6e15f0-9d9c-460b-b8e5-8949c99d71de
+          role: user
+          text: 需要处理的文档为/{{#context#}}
+        selected: false
+        title: 文章摘要
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1749723349900'
+      position:
+        x: 989
+        y: 282
+      positionAbsolute:
+        x: 989
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1749723349900'
+          - text
+          variable_selector:
+          - conversation
+          - file_catalog
+          write_mode: over-write
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 87
+      id: '1749723523668'
+      position:
+        x: 1292
+        y: 282
+      positionAbsolute:
+        x: 1292
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\nimport os\nimport re\n\ndef main(arg1: str) -> dict:\n    try:\n\
+          \        # 修改为你想保存的路径，例如 D 盘根目录或某个具体文件夹\n        directory = 'D:\\\\'  #\
+          \ 或者使用 D:/ 也可以\n        file_path = os.path.join(directory, 'summary.md')\n\
+          \        \n        # 确保目录存在（如果有必要创建目录）\n        os.makedirs(directory, exist_ok=True)\n\
+          \        \n        # 写入文件，同时替换非法文件名字符\n        with open(file_path, 'w',\
+          \ encoding='utf-8') as f:\n            f.write(re.sub(r'[\\/\\\\|:、]', '',\
+          \ arg1))  # 使用 \\/ 兼容正则表达式\n        \n        return {\n            \"result\"\
+          : '文件生成成功',\n        }\n    except Exception as e:\n        return {\"result\"\
+          : str(e)}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 生成大纲
+        type: code
+        variables:
+        - value_selector:
+          - '1749723349900'
+          - text
+          variable: arg1
+      height: 53
+      id: '1749724890036'
+      position:
+        x: 1595
+        y: 282
+      positionAbsolute:
+        x: 1595
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '成功生成大纲;
+
+          <br/>'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 101
+      id: '1749724964588'
+      position:
+        x: 1906.040888484979
+        y: 216.524193765169
+      positionAbsolute:
+        x: 1906.040888484979
+        y: 216.524193765169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(arg1: str,segment_length=3000,overlap=500) -> dict:\n  \
+          \  total_length = len(arg1)\n    segments = []\n    start = 0\n    while\
+          \ start < total_length:\n        end = start + segment_length\n        if\
+          \ end > total_length:\n            end = total_length\n        segment =\
+          \ arg1[start:end]\n        segments.append(segment)\n        start +=segment_length\
+          \ - overlap\n        if start >= total_length:\n            break\n    return\
+          \ {\n        \"result\": segments\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 切割全文
+        type: code
+        variables:
+        - value_selector:
+          - '1749723294612'
+          - text
+          variable: arg1
+      height: 53
+      id: '1749725282173'
+      position:
+        x: 1595
+        y: 374
+      positionAbsolute:
+        x: 1595
+        y: 374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 177
+        is_parallel: true
+        iterator_selector:
+        - '1749725282173'
+        - result
+        output_selector:
+        - '1749728198670'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1749725508748start
+        title: 迭代
+        type: iteration
+        width: 690
+      height: 177
+      id: '1749725508748'
+      position:
+        x: 1896.2588988734078
+        y: 374
+      positionAbsolute:
+        x: 1896.2588988734078
+        y: 374
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 690
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1749725508748start
+      parentId: '1749725508748'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1920.2588988734078
+        y: 442
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "import os\nimport re\n\ndef main(arg1: str, index) -> dict:\n    try:\n\
+          \        # 设置保存到 D 盘根目录，也可以指定具体文件夹如：'D:\\\\output'\n        directory =\
+          \ 'D:\\\\'\n        file_path = os.path.join(directory, f'part{index}.md')\n\
+          \n        # 确保目标目录存在\n        os.makedirs(directory, exist_ok=True)\n\n\
+          \        # 写入文件，去除非法字符\n        with open(file_path, 'w', encoding='utf-8')\
+          \ as f:\n            cleaned_content = re.sub(r'[\\/\\\\|:、]', '', arg1)\n\
+          \            f.write(cleaned_content)\n\n        return {\n            \"\
+          result\": '文件生成成功',\n            \"file_saved_to\": file_path  # 可选：返回保存路径\n\
+          \        }\n\n    except Exception as e:\n        return {\"result\": str(e)}\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1749725508748'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 保存文件
+        type: code
+        variables:
+        - value_selector:
+          - '1749725516668'
+          - text
+          variable: arg1
+        - value_selector:
+          - '1749725508748'
+          - index
+          variable: index
+      height: 53
+      id: '1749725979381'
+      parentId: '1749725508748'
+      position:
+        x: 431
+        y: 68
+      positionAbsolute:
+        x: 2327.258898873408
+        y: 442
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import os\nimport re\nimport json\nfrom pathlib import Path\n\ndef\
+          \ main() -> dict:\n    \"\"\"处理文件夹中的所有part*.md文件，合并内容并添加标记\"\"\"\n    try:\n\
+          \        folder = Path('/data/file')\n        output_file = folder / 'context_for_all.txt'\n\
+          \        \n        # 获取并按数字排序文件\n        files = sorted(\n            [f\
+          \ for f in folder.glob('part*.md') if f.is_file()],\n            key=lambda\
+          \ x: int(re.search(r'\\d+', x.name).group())\n        )\n        \n    \
+          \    with output_file.open('w', encoding='utf-8') as f_out:\n          \
+          \  for file in files:\n                with file.open(encoding='utf-8')\
+          \ as f_in:\n                    content = f_in.read()\n                \
+          \    \n                    # 使用正则表达式提取所有segment\n                    segments\
+          \ = re.finditer(r'{\\s*\"segment_\\d+\"\\s*{([^}]+)}', content)\n      \
+          \              \n                    for seg in segments:\n            \
+          \            segment_content = seg.group(1)\n                        \n\
+          \                        # 提取text部分\n                        text_match\
+          \ = re.search(r'\"text\"\\s*\"([^\"]+)\"', segment_content)\n          \
+          \              if text_match:\n                            f_out.write(text_match.group(1)\
+          \ + \"###\\n\")\n                        \n                        # 提取tags部分并处理\n\
+          \                        tags_match = re.search(r'\"tags\"\\s*\"([^\"]+)\"\
+          ', segment_content)\n                        if tags_match:\n          \
+          \                  tags = [t.strip() for t in tags_match.group(1).split(',')\
+          \ if t.strip()]\n                            f_out.write('###'.join(tags)\
+          \ + \"###\\n\")  # 用###分割每个tag\n                        \n             \
+          \           f_out.write(\"&&&&\\n\")  # 分隔不同的segment\n        \n       \
+          \ return {\"result\": \"文件处理完成\"}\n\n    except Exception as e:\n      \
+          \  return {\"result\": f\"处理失败: {str(e)}\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 合并文档
+        type: code
+        variables: []
+      height: 53
+      id: '1749726265381'
+      position:
+        x: 2648
+        y: 374
+      positionAbsolute:
+        x: 2648
+        y: 374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: 文本处理成功
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 101
+      id: '1749726305509'
+      position:
+        x: 2951
+        y: 374
+      positionAbsolute:
+        x: 2951
+        y: 374
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1749725508748'
+          - item
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1749725508748'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qvq-max-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: d587aed7-aea3-46a2-b7a1-9dce5f2774c4
+          role: system
+          text: "你是一个专业数据清洗及标注工程师；\n请先阅读并理解本文档的全部大纲，\n<文本大纲>为：{{#conversation.file_catalog#}}\n\
+            再按照以下规则处理文本，\n<文本内容>为：{{#context#}}\n\n一、数据清洗：\n1. 提取结构化正文\n2. 过滤噪声内容，移除页眉/页脚、广告、版权声明、乱码、空白行、无效数据行、重复段落、html标签(比如<br>、段落序号数字(1,2,3...)\n\
+            3. 自动合并碎片化段落（<80字符且无标点）\n4. 识别并标记专业术语\n5. 如果文本内容为没有任何含义的符号和html标签，这段内容直接清除不需要输出\n\
+            \n二、数据标注：\n1. 动态分段机制\n  - 基础段长： 200~250字节，允许学术类扩展至450字节\n  - 对话类强制分段规则：每3论对话必须拆分段落\n\
+            \  - 保留逻辑标记符：如\"首先/其次/最后”等序列次需要在通一段落\n\n2.  标签tags构成\n\n标题： 标题1/标题2/标题3/标题4/标题5/等（从大纲和本段文字前1000字内搜索，获取分段标题）\n\
+            \n关键词： 关键词1/关键词2/关键词3/关键词4/关键词5/关键词6/关键词7/关键词8/关键词9/关键词10/专业术语等（从文段获取10个以上关键词与元数据，同时要加上识别到的专业术语）\n\
+            \n3. 特殊处理\n冲突解决机制\n   - 当相邻段落标签重复率>60%，触发智能合并\n   - 语义断裂检测：使用<gap>标记逻辑跳跃点\n\
+            \n4. 示例：\n输入段落：\n\"除非谷歌和 OpenAI 改变态度,选择和开源社区合作,否则将被后者替代\",据彭博 和 SemiAnalysis\
+            \ 报道,4 月初,谷歌工程师 Luke Sernau 发文称,在人工智能大语言模 型(Large Language Models,LLM,以下简称\"\
+            大模型\")赛道,谷歌和 ChatGPT 的推 出方 OpenAI 都没有护城河,开源社区正在赢得竞赛。\n这一论调让公众对\"年初 Meta\
+            \ 开源大模型 LLaMA 后,大模型大量出现\"现象的关注推 向了高潮,资本市场也在关注大公司闭源超大模型和开源大模型谁能赢得竞争,在\"\
+            模 型\"\"算力\"\"数据\"三大关键要素中,大模型未来竞争格局如何,模型小了是否就不再 需要大量算力,数据在其中又扮演了什么角色?……本报告试图剖析这波开源大模型风\
+            \ 潮的共同点,回顾开源标杆 Linux 的发展史,回答以上问题,展望大模型的未来。\n\n期望输出下面这样格式的内容：\n{\n   \"\
+            segment_01\":{\n       \"text\": “谷歌工程师Luke Sernau认为，谷歌和OpenAI在AI大模型领域缺乏护城河，开源社区（如Meta的LLaMA）正逐渐占据优势。这一观点引发了对闭源与开源模型竞争格局的讨论，涉及模型、算力、数据三大要素的未来影响。报告通过分析开源大模型风潮的共同点，并类比Linux的发展历史，探讨了开源模式是否将主导AI领域，以及小模型、算力需求和数据角色的演变趋势。”，\n\
+            \        “tags”: [“开源大模型 ”,\"AI竞争\",\"MetaLLaMA,\"闭源VS开源\"]\n    }\n}\n\
+            \n注意：\n1. text是原文部分，不允许修改和扩展，直接使用格式清洗之后的原文内容\n2. 标签tags里面要列出所有的标题，识别内容后，标题参考<文本大纲>，\
+            \ 生成时，不需要带上层级序号\n3. 如果是有条文类的文档，比如规则、法律类等文档，tags里面需要标明是第几章，第几条\n4. tags除了上述外，还要再从文段获取10个左右关键词\n\
+            5. tags内容放在一行，关键词用英文双引号\"\"包围，用应为逗号分割即可"
+        - role: user
+          text: 最终输出上下文中全部的有效内容，并确保tags行的关键词用英文双引号""包围，用应为逗号分割，不包含其他符号。
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1749728198670'
+      parentId: '1749725508748'
+      position:
+        x: 117.6617148050268
+        y: 68
+      positionAbsolute:
+        x: 2013.9206136784346
+        y: 442
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    viewport:
+      x: -2238.766605727341
+      y: -4.5487141192046465
+      zoom: 0.870550563296124
