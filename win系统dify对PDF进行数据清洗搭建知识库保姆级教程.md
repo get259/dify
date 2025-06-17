@@ -14,7 +14,7 @@
 
 5接下来打开docker（**请确保dify是基于docker本地部署，网页版无法将清洗好的文件下载到本地**）选择sandbox-1点击exec写入权限下载清洗好的文件，如图操作（有**#**是自己打的，没有是系统提示）
 
-![exec](image/dify权限.png)
+![exec](image/cea69d82b673a3486d1233ac17aa4d6.png)
 
 此时点击sandbox-1,点击Files（exec右边），找到var--sandbox--sandbox-py--data--file，这就是我们清洗好之后markdown文件的位置。
 
